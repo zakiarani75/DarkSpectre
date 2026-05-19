@@ -1,0 +1,1459 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>DarkSpectre Report - Zakia Rani</title>
+<style>
+*{margin:0;padding:0;box-sizing:border-box}
+body{font-family:'Segoe UI',Arial,sans-serif;background:#0a0015;color:#e0d0f0;padding:25px}
+.header{background:linear-gradient(135deg,#2d0050,#1a0033);padding:40px;text-align:center;border-radius:15px;margin-bottom:25px;border:2px solid #9b30ff}
+.header h1{color:#c084fc;font-size:2.8em;letter-spacing:5px;text-shadow:0 0 20px rgba(192,132,252,0.5)}
+.header .author{color:#d8b4fe;font-weight:bold;font-size:1.4em;margin-top:10px}
+.nav{background:#1a0033;padding:12px;border-radius:10px;margin-bottom:25px;text-align:center;border:1px solid #9b30ff66;position:sticky;top:10px;z-index:100}
+.nav a{color:#c0a0e0;text-decoration:none;padding:6px 12px;margin:2px;display:inline-block;border-radius:5px;transition:0.3s;font-weight:600}
+.nav a:hover{background:#9b30ff;color:#fff}
+.dashboard{display:flex;justify-content:center;gap:20px;flex-wrap:wrap;margin-bottom:30px}
+.card{background:linear-gradient(135deg,#1a0033,#2d0050);padding:25px;border-radius:12px;text-align:center;min-width:170px;border:1px solid #9b30ff66}
+.card .num{font-size:2.5em;font-weight:bold;color:#d8b4fe}
+.card .label{color:#a080c0;margin-top:5px;font-weight:600}
+.section{background:linear-gradient(135deg,#1a0033,#0d0020);border-radius:12px;padding:25px;margin-bottom:20px;border-left:5px solid #9b30ff}
+.section h2{color:#d8b4fe;margin-bottom:15px;padding-bottom:10px;border-bottom:2px solid #9b30ff66}
+.section .info{background:#0d0020;padding:10px 15px;border-radius:5px;color:#c0a0e0;margin:8px 0;border-left:3px solid #9b30ff66}
+.section .info strong{color:#d8b4fe}
+pre{background:#0a0015;padding:15px;border-radius:8px;color:#00ff88;font-size:0.9em;line-height:1.5;border:1px solid #9b30ff33;overflow-x:auto;max-height:400px;overflow-y:auto;margin-top:12px}
+table{width:100%;border-collapse:collapse;margin:15px 0}
+th{background:linear-gradient(135deg,#9b30ff,#6b21a8);color:#fff;padding:12px;text-align:left}
+td{border:1px solid #9b30ff33;padding:10px}
+tr:hover{background:#1a0033aa}
+.footer{text-align:center;padding:25px;color:#666;margin-top:30px;border-top:1px solid #9b30ff33}
+.footer .author{color:#d8b4fe;font-weight:bold;font-size:1.2em;margin:8px 0}
+</style>
+</head>
+<body>
+<div class="header">
+<h1>DARKSPECTRE</h1>
+<p>AI-Powered Pentest Framework</p>
+<p class="author">Author: Zakia Rani</p>
+<p style="color:#c0a0e0;margin-top:10px">Target: 192.168.229.132 | Date: Tue May 19 16:32:31 PKT 2026</p>
+</div>
+<div class="nav">
+<a href="#t1">Netdiscover</a><a href="#t2">Nmap</a><a href="#t3">Nmap Vuln</a>
+<a href="#t4">WhatWeb</a><a href="#t5">Dirb</a><a href="#t6">Nikto</a>
+<a href="#t7">Enum4Linux</a><a href="#t8">WPScan</a><a href="#t9">SQLMap</a>
+<a href="#t10">Hydra</a><a href="#t11">Metasploit</a>
+<a href="#vuln" style="background:#9b30ff;color:#fff">Vulnerabilities</a>
+<a href="#sum" style="background:#00aa00;color:#fff">Summary</a>
+</div>
+<div class="dashboard">
+<div class="card"><div class="num">11</div><div class="label">Tools</div></div>
+<div class="card"><div class="num" style="color:#00ff88">100%</div><div class="label">Complete</div></div>
+<div class="card"><div class="num" style="color:#d8b4fe">ZR</div><div class="label">Zakia Rani</div></div>
+</div>
+
+<div class="section" id="t1"><h2>TOOL 1: NETDISCOVER</h2>
+<div class="info"><strong>Purpose:</strong> Find live devices on network</div>
+<div class="info"><strong>Command:</strong> sudo netdiscover -r 192.168.1.0/24 -P</div>
+<pre> _____________________________________________________________________________
+   IP            At MAC Address     Count     Len  MAC Vendor / Hostname      
+ -----------------------------------------------------------------------------
+
+-- Active scan completed, 0 Hosts found.
+</pre></div>
+
+<div class="section" id="t2"><h2>TOOL 2: NMAP - Port Scan</h2>
+<div class="info"><strong>Purpose:</strong> Detect open ports, services, OS</div>
+<div class="info"><strong>Command:</strong> sudo nmap -sS -sV -O -p- TARGET</div>
+<pre>Starting Nmap 7.99 ( https://nmap.org ) at 2026-05-19 16:17 +0500
+Nmap scan report for 192.168.229.132
+Host is up (0.0011s latency).
+Not shown: 65505 closed tcp ports (reset)
+PORT      STATE SERVICE     VERSION
+21/tcp    open  ftp         vsftpd 2.3.4
+22/tcp    open  ssh         OpenSSH 4.7p1 Debian 8ubuntu1 (protocol 2.0)
+23/tcp    open  telnet      Linux telnetd
+25/tcp    open  smtp        Postfix smtpd
+53/tcp    open  domain      ISC BIND 9.4.2
+80/tcp    open  http        Apache httpd 2.2.8 ((Ubuntu) DAV/2)
+111/tcp   open  rpcbind     2 (RPC #100000)
+139/tcp   open  netbios-ssn Samba smbd 3.X - 4.X (workgroup: WORKGROUP)
+445/tcp   open  netbios-ssn Samba smbd 3.X - 4.X (workgroup: WORKGROUP)
+512/tcp   open  exec        netkit-rsh rexecd
+513/tcp   open  login       OpenBSD or Solaris rlogind
+514/tcp   open  tcpwrapped
+1099/tcp  open  java-rmi    GNU Classpath grmiregistry
+1524/tcp  open  bindshell   Metasploitable root shell
+2049/tcp  open  nfs         2-4 (RPC #100003)
+2121/tcp  open  ftp         ProFTPD 1.3.1
+3306/tcp  open  mysql       MySQL 5.0.51a-3ubuntu5
+3632/tcp  open  distccd     distccd v1 ((GNU) 4.2.4 (Ubuntu 4.2.4-1ubuntu4))
+5432/tcp  open  postgresql  PostgreSQL DB 8.3.0 - 8.3.7
+5900/tcp  open  vnc         VNC (protocol 3.3)
+6000/tcp  open  X11         (access denied)
+6667/tcp  open  irc         UnrealIRCd
+6697/tcp  open  irc         UnrealIRCd
+8009/tcp  open  ajp13       Apache Jserv (Protocol v1.3)
+8180/tcp  open  http        Apache Tomcat/Coyote JSP engine 1.1
+8787/tcp  open  drb         Ruby DRb RMI (Ruby 1.8; path /usr/lib/ruby/1.8/drb)
+38030/tcp open  status      1 (RPC #100024)
+42432/tcp open  nlockmgr    1-4 (RPC #100021)
+42501/tcp open  java-rmi    GNU Classpath grmiregistry
+48490/tcp open  mountd      1-3 (RPC #100005)
+MAC Address: 00:0C:29:29:B7:A3 (VMware)
+Device type: general purpose
+Running: Linux 2.6.X
+OS CPE: cpe:/o:linux:linux_kernel:2.6
+OS details: Linux 2.6.9 - 2.6.33
+Network Distance: 1 hop
+Service Info: Hosts:  metasploitable.localdomain, irc.Metasploitable.LAN; OSs: Unix, Linux; CPE: cpe:/o:linux:linux_kernel
+
+OS and Service detection performed. Please report any incorrect results at https://nmap.org/submit/ .
+Nmap done: 1 IP address (1 host up) scanned in 137.04 seconds
+</pre></div>
+
+<div class="section" id="t3"><h2>TOOL 3: NMAP |   VULNERABLE:
+|     State: VULNERABLE (Exploitable)
+|     IDs:  CVE:CVE-2011-2523  BID:48539
+|       https://cve.mitre.org/cgi-bin/cvename.cgi?name=CVE-2011-2523
+|   VULNERABLE:
+|     State: VULNERABLE
+|     IDs:  CVE:CVE-2014-3566  BID:70574
+|       https://cve.mitre.org/cgi-bin/cvename.cgi?name=CVE-2014-3566
+|_  The SMTP server is not Exim: NOT VULNERABLE
+|   VULNERABLE:
+|     State: VULNERABLE
+|       eavesdropping, and are vulnerable to active man-in-the-middle attacks
+|     State: VULNERABLE
+|     IDs:  CVE:CVE-2015-4000  BID:74733
+|       https://cve.mitre.org/cgi-bin/cvename.cgi?name=CVE-2015-4000
+|     State: VULNERABLE
+|   VULNERABLE:
+|     State: LIKELY VULNERABLE
+|     IDs:  CVE:CVE-2007-6750
+|       https://cve.mitre.org/cgi-bin/cvename.cgi?name=CVE-2007-6750
+|   VULNERABLE:
+|     State: VULNERABLE
+|   VULNERABLE:
+|     State: VULNERABLE
+|   VULNERABLE:
+|     State: VULNERABLE
+|     IDs:  CVE:CVE-2014-3566  BID:70574
+|       https://cve.mitre.org/cgi-bin/cvename.cgi?name=CVE-2014-3566
+|   VULNERABLE:
+|     State: VULNERABLE
+|     Risk factor: High
+|       https://cve.mitre.org/cgi-bin/cvename.cgi?name=CVE-2014-0224
+|   VULNERABLE:
+|     State: LIKELY VULNERABLE
+|     IDs:  CVE:CVE-2007-6750
+|       https://cve.mitre.org/cgi-bin/cvename.cgi?name=CVE-2007-6750
+</h2>
+<div class="info"><strong>Purpose:</strong> Scan for known CVEs</div>
+<div class="info"><strong>Command:</strong> sudo nmap --script vuln TARGET</div>
+<pre>Starting Nmap 7.99 ( https://nmap.org ) at 2026-05-19 16:20 +0500
+Nmap scan report for 192.168.229.132
+Host is up (0.00057s latency).
+Not shown: 977 closed tcp ports (reset)
+PORT     STATE SERVICE
+21/tcp   open  ftp
+| ftp-vsftpd-backdoor: 
+|   |   VULNERABLE:
+|     State: VULNERABLE (Exploitable)
+|     IDs:  CVE:CVE-2011-2523  BID:48539
+|       https://cve.mitre.org/cgi-bin/cvename.cgi?name=CVE-2011-2523
+|   VULNERABLE:
+|     State: VULNERABLE
+|     IDs:  CVE:CVE-2014-3566  BID:70574
+|       https://cve.mitre.org/cgi-bin/cvename.cgi?name=CVE-2014-3566
+|_  The SMTP server is not Exim: NOT VULNERABLE
+|   VULNERABLE:
+|     State: VULNERABLE
+|       eavesdropping, and are vulnerable to active man-in-the-middle attacks
+|     State: VULNERABLE
+|     IDs:  CVE:CVE-2015-4000  BID:74733
+|       https://cve.mitre.org/cgi-bin/cvename.cgi?name=CVE-2015-4000
+|     State: VULNERABLE
+|   VULNERABLE:
+|     State: LIKELY VULNERABLE
+|     IDs:  CVE:CVE-2007-6750
+|       https://cve.mitre.org/cgi-bin/cvename.cgi?name=CVE-2007-6750
+|   VULNERABLE:
+|     State: VULNERABLE
+|   VULNERABLE:
+|     State: VULNERABLE
+|   VULNERABLE:
+|     State: VULNERABLE
+|     IDs:  CVE:CVE-2014-3566  BID:70574
+|       https://cve.mitre.org/cgi-bin/cvename.cgi?name=CVE-2014-3566
+|   VULNERABLE:
+|     State: VULNERABLE
+|     Risk factor: High
+|       https://cve.mitre.org/cgi-bin/cvename.cgi?name=CVE-2014-0224
+|   VULNERABLE:
+|     State: LIKELY VULNERABLE
+|     IDs:  CVE:CVE-2007-6750
+|       https://cve.mitre.org/cgi-bin/cvename.cgi?name=CVE-2007-6750
+ERABLE:
+|   vsFTPd version 2.3.4 backdoor
+|     State: |   VULNERABLE:
+|     State: VULNERABLE (Exploitable)
+|     IDs:  CVE:CVE-2011-2523  BID:48539
+|       https://cve.mitre.org/cgi-bin/cvename.cgi?name=CVE-2011-2523
+|   VULNERABLE:
+|     State: VULNERABLE
+|     IDs:  CVE:CVE-2014-3566  BID:70574
+|       https://cve.mitre.org/cgi-bin/cvename.cgi?name=CVE-2014-3566
+|_  The SMTP server is not Exim: NOT VULNERABLE
+|   VULNERABLE:
+|     State: VULNERABLE
+|       eavesdropping, and are vulnerable to active man-in-the-middle attacks
+|     State: VULNERABLE
+|     IDs:  CVE:CVE-2015-4000  BID:74733
+|       https://cve.mitre.org/cgi-bin/cvename.cgi?name=CVE-2015-4000
+|     State: VULNERABLE
+|   VULNERABLE:
+|     State: LIKELY VULNERABLE
+|     IDs:  CVE:CVE-2007-6750
+|       https://cve.mitre.org/cgi-bin/cvename.cgi?name=CVE-2007-6750
+|   VULNERABLE:
+|     State: VULNERABLE
+|   VULNERABLE:
+|     State: VULNERABLE
+|   VULNERABLE:
+|     State: VULNERABLE
+|     IDs:  CVE:CVE-2014-3566  BID:70574
+|       https://cve.mitre.org/cgi-bin/cvename.cgi?name=CVE-2014-3566
+|   VULNERABLE:
+|     State: VULNERABLE
+|     Risk factor: High
+|       https://cve.mitre.org/cgi-bin/cvename.cgi?name=CVE-2014-0224
+|   VULNERABLE:
+|     State: LIKELY VULNERABLE
+|     IDs:  CVE:CVE-2007-6750
+|       https://cve.mitre.org/cgi-bin/cvename.cgi?name=CVE-2007-6750
+ERABLE (Exploitable)
+|     IDs:  CVE:CVE-2011-2523  BID:48539
+|       vsFTPd version 2.3.4 backdoor, this was reported on 2011-07-04.
+|     Disclosure date: 2011-07-03
+|     Exploit results:
+|       Shell command: id
+|       Results: uid=0(root) gid=0(root)
+|     References:
+|       http://scarybeastsecurity.blogspot.com/2011/07/alert-vsftpd-download-backdoored.html
+|       https://cve.mitre.org/cgi-bin/cvename.cgi?name=CVE-2011-2523
+|       https://www.securityfocus.com/bid/48539
+|_      https://github.com/rapid7/metasploit-framework/blob/master/modules/exploits/unix/ftp/vsftpd_234_backdoor.rb
+22/tcp   open  ssh
+23/tcp   open  telnet
+25/tcp   open  smtp
+| ssl-poodle: 
+|   |   VULNERABLE:
+|     State: VULNERABLE (Exploitable)
+|     IDs:  CVE:CVE-2011-2523  BID:48539
+|       https://cve.mitre.org/cgi-bin/cvename.cgi?name=CVE-2011-2523
+|   VULNERABLE:
+|     State: VULNERABLE
+|     IDs:  CVE:CVE-2014-3566  BID:70574
+|       https://cve.mitre.org/cgi-bin/cvename.cgi?name=CVE-2014-3566
+|_  The SMTP server is not Exim: NOT VULNERABLE
+|   VULNERABLE:
+|     State: VULNERABLE
+|       eavesdropping, and are vulnerable to active man-in-the-middle attacks
+|     State: VULNERABLE
+|     IDs:  CVE:CVE-2015-4000  BID:74733
+|       https://cve.mitre.org/cgi-bin/cvename.cgi?name=CVE-2015-4000
+|     State: VULNERABLE
+|   VULNERABLE:
+|     State: LIKELY VULNERABLE
+|     IDs:  CVE:CVE-2007-6750
+|       https://cve.mitre.org/cgi-bin/cvename.cgi?name=CVE-2007-6750
+|   VULNERABLE:
+|     State: VULNERABLE
+|   VULNERABLE:
+|     State: VULNERABLE
+|   VULNERABLE:
+|     State: VULNERABLE
+|     IDs:  CVE:CVE-2014-3566  BID:70574
+|       https://cve.mitre.org/cgi-bin/cvename.cgi?name=CVE-2014-3566
+|   VULNERABLE:
+|     State: VULNERABLE
+|     Risk factor: High
+|       https://cve.mitre.org/cgi-bin/cvename.cgi?name=CVE-2014-0224
+|   VULNERABLE:
+|     State: LIKELY VULNERABLE
+|     IDs:  CVE:CVE-2007-6750
+|       https://cve.mitre.org/cgi-bin/cvename.cgi?name=CVE-2007-6750
+ERABLE:
+|   SSL POODLE information leak
+|     State: |   VULNERABLE:
+|     State: VULNERABLE (Exploitable)
+|     IDs:  CVE:CVE-2011-2523  BID:48539
+|       https://cve.mitre.org/cgi-bin/cvename.cgi?name=CVE-2011-2523
+|   VULNERABLE:
+|     State: VULNERABLE
+|     IDs:  CVE:CVE-2014-3566  BID:70574
+|       https://cve.mitre.org/cgi-bin/cvename.cgi?name=CVE-2014-3566
+|_  The SMTP server is not Exim: NOT VULNERABLE
+|   VULNERABLE:
+|     State: VULNERABLE
+|       eavesdropping, and are vulnerable to active man-in-the-middle attacks
+|     State: VULNERABLE
+|     IDs:  CVE:CVE-2015-4000  BID:74733
+|       https://cve.mitre.org/cgi-bin/cvename.cgi?name=CVE-2015-4000
+|     State: VULNERABLE
+|   VULNERABLE:
+|     State: LIKELY VULNERABLE
+|     IDs:  CVE:CVE-2007-6750
+|       https://cve.mitre.org/cgi-bin/cvename.cgi?name=CVE-2007-6750
+|   VULNERABLE:
+|     State: VULNERABLE
+|   VULNERABLE:
+|     State: VULNERABLE
+|   VULNERABLE:
+|     State: VULNERABLE
+|     IDs:  CVE:CVE-2014-3566  BID:70574
+|       https://cve.mitre.org/cgi-bin/cvename.cgi?name=CVE-2014-3566
+|   VULNERABLE:
+|     State: VULNERABLE
+|     Risk factor: High
+|       https://cve.mitre.org/cgi-bin/cvename.cgi?name=CVE-2014-0224
+|   VULNERABLE:
+|     State: LIKELY VULNERABLE
+|     IDs:  CVE:CVE-2007-6750
+|       https://cve.mitre.org/cgi-bin/cvename.cgi?name=CVE-2007-6750
+ERABLE
+|     IDs:  CVE:CVE-2014-3566  BID:70574
+|           The SSL protocol 3.0, as used in OpenSSL through 1.0.1i and other
+|           products, uses nondeterministic CBC padding, which makes it easier
+|           for man-in-the-middle attackers to obtain cleartext data via a
+|           padding-oracle attack, aka the "POODLE" issue.
+|     Disclosure date: 2014-10-14
+|     Check results:
+|       TLS_RSA_WITH_AES_128_CBC_SHA
+|     References:
+|       https://www.openssl.org/~bodo/ssl-poodle.pdf
+|       https://www.securityfocus.com/bid/70574
+|       https://cve.mitre.org/cgi-bin/cvename.cgi?name=CVE-2014-3566
+|_      https://www.imperialviolet.org/2014/10/14/poodle.html
+|_sslv2-drown: ERROR: Script execution failed (use -d to debug)
+| smtp-vuln-cve2010-4344: 
+|_  The SMTP server is not Exim: NOT |   VULNERABLE:
+|     State: VULNERABLE (Exploitable)
+|     IDs:  CVE:CVE-2011-2523  BID:48539
+|       https://cve.mitre.org/cgi-bin/cvename.cgi?name=CVE-2011-2523
+|   VULNERABLE:
+|     State: VULNERABLE
+|     IDs:  CVE:CVE-2014-3566  BID:70574
+|       https://cve.mitre.org/cgi-bin/cvename.cgi?name=CVE-2014-3566
+|_  The SMTP server is not Exim: NOT VULNERABLE
+|   VULNERABLE:
+|     State: VULNERABLE
+|       eavesdropping, and are vulnerable to active man-in-the-middle attacks
+|     State: VULNERABLE
+|     IDs:  CVE:CVE-2015-4000  BID:74733
+|       https://cve.mitre.org/cgi-bin/cvename.cgi?name=CVE-2015-4000
+|     State: VULNERABLE
+|   VULNERABLE:
+|     State: LIKELY VULNERABLE
+|     IDs:  CVE:CVE-2007-6750
+|       https://cve.mitre.org/cgi-bin/cvename.cgi?name=CVE-2007-6750
+|   VULNERABLE:
+|     State: VULNERABLE
+|   VULNERABLE:
+|     State: VULNERABLE
+|   VULNERABLE:
+|     State: VULNERABLE
+|     IDs:  CVE:CVE-2014-3566  BID:70574
+|       https://cve.mitre.org/cgi-bin/cvename.cgi?name=CVE-2014-3566
+|   VULNERABLE:
+|     State: VULNERABLE
+|     Risk factor: High
+|       https://cve.mitre.org/cgi-bin/cvename.cgi?name=CVE-2014-0224
+|   VULNERABLE:
+|     State: LIKELY VULNERABLE
+|     IDs:  CVE:CVE-2007-6750
+|       https://cve.mitre.org/cgi-bin/cvename.cgi?name=CVE-2007-6750
+ERABLE
+| ssl-dh-params: 
+|   |   VULNERABLE:
+|     State: VULNERABLE (Exploitable)
+|     IDs:  CVE:CVE-2011-2523  BID:48539
+|       https://cve.mitre.org/cgi-bin/cvename.cgi?name=CVE-2011-2523
+|   VULNERABLE:
+|     State: VULNERABLE
+|     IDs:  CVE:CVE-2014-3566  BID:70574
+|       https://cve.mitre.org/cgi-bin/cvename.cgi?name=CVE-2014-3566
+|_  The SMTP server is not Exim: NOT VULNERABLE
+|   VULNERABLE:
+|     State: VULNERABLE
+|       eavesdropping, and are vulnerable to active man-in-the-middle attacks
+|     State: VULNERABLE
+|     IDs:  CVE:CVE-2015-4000  BID:74733
+|       https://cve.mitre.org/cgi-bin/cvename.cgi?name=CVE-2015-4000
+|     State: VULNERABLE
+|   VULNERABLE:
+|     State: LIKELY VULNERABLE
+|     IDs:  CVE:CVE-2007-6750
+|       https://cve.mitre.org/cgi-bin/cvename.cgi?name=CVE-2007-6750
+|   VULNERABLE:
+|     State: VULNERABLE
+|   VULNERABLE:
+|     State: VULNERABLE
+|   VULNERABLE:
+|     State: VULNERABLE
+|     IDs:  CVE:CVE-2014-3566  BID:70574
+|       https://cve.mitre.org/cgi-bin/cvename.cgi?name=CVE-2014-3566
+|   VULNERABLE:
+|     State: VULNERABLE
+|     Risk factor: High
+|       https://cve.mitre.org/cgi-bin/cvename.cgi?name=CVE-2014-0224
+|   VULNERABLE:
+|     State: LIKELY VULNERABLE
+|     IDs:  CVE:CVE-2007-6750
+|       https://cve.mitre.org/cgi-bin/cvename.cgi?name=CVE-2007-6750
+ERABLE:
+|   Anonymous Diffie-Hellman Key Exchange MitM Vulnerability
+|     State: |   VULNERABLE:
+|     State: VULNERABLE (Exploitable)
+|     IDs:  CVE:CVE-2011-2523  BID:48539
+|       https://cve.mitre.org/cgi-bin/cvename.cgi?name=CVE-2011-2523
+|   VULNERABLE:
+|     State: VULNERABLE
+|     IDs:  CVE:CVE-2014-3566  BID:70574
+|       https://cve.mitre.org/cgi-bin/cvename.cgi?name=CVE-2014-3566
+|_  The SMTP server is not Exim: NOT VULNERABLE
+|   VULNERABLE:
+|     State: VULNERABLE
+|       eavesdropping, and are vulnerable to active man-in-the-middle attacks
+|     State: VULNERABLE
+|     IDs:  CVE:CVE-2015-4000  BID:74733
+|       https://cve.mitre.org/cgi-bin/cvename.cgi?name=CVE-2015-4000
+|     State: VULNERABLE
+|   VULNERABLE:
+|     State: LIKELY VULNERABLE
+|     IDs:  CVE:CVE-2007-6750
+|       https://cve.mitre.org/cgi-bin/cvename.cgi?name=CVE-2007-6750
+|   VULNERABLE:
+|     State: VULNERABLE
+|   VULNERABLE:
+|     State: VULNERABLE
+|   VULNERABLE:
+|     State: VULNERABLE
+|     IDs:  CVE:CVE-2014-3566  BID:70574
+|       https://cve.mitre.org/cgi-bin/cvename.cgi?name=CVE-2014-3566
+|   VULNERABLE:
+|     State: VULNERABLE
+|     Risk factor: High
+|       https://cve.mitre.org/cgi-bin/cvename.cgi?name=CVE-2014-0224
+|   VULNERABLE:
+|     State: LIKELY VULNERABLE
+|     IDs:  CVE:CVE-2007-6750
+|       https://cve.mitre.org/cgi-bin/cvename.cgi?name=CVE-2007-6750
+ERABLE
+|       Transport Layer Security (TLS) services that use anonymous
+|       Diffie-Hellman key exchange only provide protection against passive
+|       eavesdropping, and are vulnerable to active man-in-the-middle attacks
+|       which could completely compromise the confidentiality and integrity
+|       of any data exchanged over the resulting session.
+|     Check results:
+|       ANONYMOUS DH GROUP 1
+|             Cipher Suite: TLS_DH_anon_WITH_DES_CBC_SHA
+|             Modulus Type: Safe prime
+|             Modulus Source: postfix builtin
+|             Modulus Length: 1024
+|             Generator Length: 8
+|             Public Key Length: 1024
+|     References:
+|       https://www.ietf.org/rfc/rfc2246.txt
+|   
+|   Transport Layer Security (TLS) Protocol DHE_EXPORT Ciphers Downgrade MitM (Logjam)
+|     State: |   VULNERABLE:
+|     State: VULNERABLE (Exploitable)
+|     IDs:  CVE:CVE-2011-2523  BID:48539
+|       https://cve.mitre.org/cgi-bin/cvename.cgi?name=CVE-2011-2523
+|   VULNERABLE:
+|     State: VULNERABLE
+|     IDs:  CVE:CVE-2014-3566  BID:70574
+|       https://cve.mitre.org/cgi-bin/cvename.cgi?name=CVE-2014-3566
+|_  The SMTP server is not Exim: NOT VULNERABLE
+|   VULNERABLE:
+|     State: VULNERABLE
+|       eavesdropping, and are vulnerable to active man-in-the-middle attacks
+|     State: VULNERABLE
+|     IDs:  CVE:CVE-2015-4000  BID:74733
+|       https://cve.mitre.org/cgi-bin/cvename.cgi?name=CVE-2015-4000
+|     State: VULNERABLE
+|   VULNERABLE:
+|     State: LIKELY VULNERABLE
+|     IDs:  CVE:CVE-2007-6750
+|       https://cve.mitre.org/cgi-bin/cvename.cgi?name=CVE-2007-6750
+|   VULNERABLE:
+|     State: VULNERABLE
+|   VULNERABLE:
+|     State: VULNERABLE
+|   VULNERABLE:
+|     State: VULNERABLE
+|     IDs:  CVE:CVE-2014-3566  BID:70574
+|       https://cve.mitre.org/cgi-bin/cvename.cgi?name=CVE-2014-3566
+|   VULNERABLE:
+|     State: VULNERABLE
+|     Risk factor: High
+|       https://cve.mitre.org/cgi-bin/cvename.cgi?name=CVE-2014-0224
+|   VULNERABLE:
+|     State: LIKELY VULNERABLE
+|     IDs:  CVE:CVE-2007-6750
+|       https://cve.mitre.org/cgi-bin/cvename.cgi?name=CVE-2007-6750
+ERABLE
+|     IDs:  CVE:CVE-2015-4000  BID:74733
+|       The Transport Layer Security (TLS) protocol contains a flaw that is
+|       triggered when handling Diffie-Hellman key exchanges defined with
+|       the DHE_EXPORT cipher. This may allow a man-in-the-middle attacker
+|       to downgrade the security of a TLS session to 512-bit export-grade
+|       cryptography, which is significantly weaker, allowing the attacker
+|       to more easily break the encryption and monitor or tamper with
+|       the encrypted stream.
+|     Disclosure date: 2015-5-19
+|     Check results:
+|       EXPORT-GRADE DH GROUP 1
+|             Cipher Suite: TLS_DHE_RSA_EXPORT_WITH_DES40_CBC_SHA
+|             Modulus Type: Safe prime
+|             Modulus Source: Unknown/Custom-generated
+|             Modulus Length: 512
+|             Generator Length: 8
+|             Public Key Length: 512
+|     References:
+|       https://weakdh.org
+|       https://cve.mitre.org/cgi-bin/cvename.cgi?name=CVE-2015-4000
+|       https://www.securityfocus.com/bid/74733
+|   
+|   Diffie-Hellman Key Exchange Insufficient Group Strength
+|     State: |   VULNERABLE:
+|     State: VULNERABLE (Exploitable)
+|     IDs:  CVE:CVE-2011-2523  BID:48539
+|       https://cve.mitre.org/cgi-bin/cvename.cgi?name=CVE-2011-2523
+|   VULNERABLE:
+|     State: VULNERABLE
+|     IDs:  CVE:CVE-2014-3566  BID:70574
+|       https://cve.mitre.org/cgi-bin/cvename.cgi?name=CVE-2014-3566
+|_  The SMTP server is not Exim: NOT VULNERABLE
+|   VULNERABLE:
+|     State: VULNERABLE
+|       eavesdropping, and are vulnerable to active man-in-the-middle attacks
+|     State: VULNERABLE
+|     IDs:  CVE:CVE-2015-4000  BID:74733
+|       https://cve.mitre.org/cgi-bin/cvename.cgi?name=CVE-2015-4000
+|     State: VULNERABLE
+|   VULNERABLE:
+|     State: LIKELY VULNERABLE
+|     IDs:  CVE:CVE-2007-6750
+|       https://cve.mitre.org/cgi-bin/cvename.cgi?name=CVE-2007-6750
+|   VULNERABLE:
+|     State: VULNERABLE
+|   VULNERABLE:
+|     State: VULNERABLE
+|   VULNERABLE:
+|     State: VULNERABLE
+|     IDs:  CVE:CVE-2014-3566  BID:70574
+|       https://cve.mitre.org/cgi-bin/cvename.cgi?name=CVE-2014-3566
+|   VULNERABLE:
+|     State: VULNERABLE
+|     Risk factor: High
+|       https://cve.mitre.org/cgi-bin/cvename.cgi?name=CVE-2014-0224
+|   VULNERABLE:
+|     State: LIKELY VULNERABLE
+|     IDs:  CVE:CVE-2007-6750
+|       https://cve.mitre.org/cgi-bin/cvename.cgi?name=CVE-2007-6750
+ERABLE
+|       Transport Layer Security (TLS) services that use Diffie-Hellman groups
+|       of insufficient strength, especially those using one of a few commonly
+|       shared groups, may be susceptible to passive eavesdropping attacks.
+|     Check results:
+|       WEAK DH GROUP 1
+|             Cipher Suite: TLS_DHE_RSA_WITH_AES_256_CBC_SHA
+|             Modulus Type: Safe prime
+|             Modulus Source: postfix builtin
+|             Modulus Length: 1024
+|             Generator Length: 8
+|             Public Key Length: 1024
+|     References:
+|_      https://weakdh.org
+53/tcp   open  domain
+80/tcp   open  http
+|_http-trace: TRACE is enabled
+|_http-vuln-cve2017-1001000: ERROR: Script execution failed (use -d to debug)
+|_http-sql-injection: ERROR: Script execution failed (use -d to debug)
+| http-enum: 
+|   /tikiwiki/: Tikiwiki
+|   /test/: Test page
+|   /phpinfo.php: Possible information file
+|   /phpMyAdmin/: phpMyAdmin
+|   /doc/: Potentially interesting directory w/ listing on 'apache/2.2.8 (ubuntu) dav/2'
+|   /icons/: Potentially interesting folder w/ directory listing
+|_  /index/: Potentially interesting folder
+| http-slowloris-check: 
+|   |   VULNERABLE:
+|     State: VULNERABLE (Exploitable)
+|     IDs:  CVE:CVE-2011-2523  BID:48539
+|       https://cve.mitre.org/cgi-bin/cvename.cgi?name=CVE-2011-2523
+|   VULNERABLE:
+|     State: VULNERABLE
+|     IDs:  CVE:CVE-2014-3566  BID:70574
+|       https://cve.mitre.org/cgi-bin/cvename.cgi?name=CVE-2014-3566
+|_  The SMTP server is not Exim: NOT VULNERABLE
+|   VULNERABLE:
+|     State: VULNERABLE
+|       eavesdropping, and are vulnerable to active man-in-the-middle attacks
+|     State: VULNERABLE
+|     IDs:  CVE:CVE-2015-4000  BID:74733
+|       https://cve.mitre.org/cgi-bin/cvename.cgi?name=CVE-2015-4000
+|     State: VULNERABLE
+|   VULNERABLE:
+|     State: LIKELY VULNERABLE
+|     IDs:  CVE:CVE-2007-6750
+|       https://cve.mitre.org/cgi-bin/cvename.cgi?name=CVE-2007-6750
+|   VULNERABLE:
+|     State: VULNERABLE
+|   VULNERABLE:
+|     State: VULNERABLE
+|   VULNERABLE:
+|     State: VULNERABLE
+|     IDs:  CVE:CVE-2014-3566  BID:70574
+|       https://cve.mitre.org/cgi-bin/cvename.cgi?name=CVE-2014-3566
+|   VULNERABLE:
+|     State: VULNERABLE
+|     Risk factor: High
+|       https://cve.mitre.org/cgi-bin/cvename.cgi?name=CVE-2014-0224
+|   VULNERABLE:
+|     State: LIKELY VULNERABLE
+|     IDs:  CVE:CVE-2007-6750
+|       https://cve.mitre.org/cgi-bin/cvename.cgi?name=CVE-2007-6750
+ERABLE:
+|   Slowloris DOS attack
+|     State: LIKELY |   VULNERABLE:
+|     State: VULNERABLE (Exploitable)
+|     IDs:  CVE:CVE-2011-2523  BID:48539
+|       https://cve.mitre.org/cgi-bin/cvename.cgi?name=CVE-2011-2523
+|   VULNERABLE:
+|     State: VULNERABLE
+|     IDs:  CVE:CVE-2014-3566  BID:70574
+|       https://cve.mitre.org/cgi-bin/cvename.cgi?name=CVE-2014-3566
+|_  The SMTP server is not Exim: NOT VULNERABLE
+|   VULNERABLE:
+|     State: VULNERABLE
+|       eavesdropping, and are vulnerable to active man-in-the-middle attacks
+|     State: VULNERABLE
+|     IDs:  CVE:CVE-2015-4000  BID:74733
+|       https://cve.mitre.org/cgi-bin/cvename.cgi?name=CVE-2015-4000
+|     State: VULNERABLE
+|   VULNERABLE:
+|     State: LIKELY VULNERABLE
+|     IDs:  CVE:CVE-2007-6750
+|       https://cve.mitre.org/cgi-bin/cvename.cgi?name=CVE-2007-6750
+|   VULNERABLE:
+|     State: VULNERABLE
+|   VULNERABLE:
+|     State: VULNERABLE
+|   VULNERABLE:
+|     State: VULNERABLE
+|     IDs:  CVE:CVE-2014-3566  BID:70574
+|       https://cve.mitre.org/cgi-bin/cvename.cgi?name=CVE-2014-3566
+|   VULNERABLE:
+|     State: VULNERABLE
+|     Risk factor: High
+|       https://cve.mitre.org/cgi-bin/cvename.cgi?name=CVE-2014-0224
+|   VULNERABLE:
+|     State: LIKELY VULNERABLE
+|     IDs:  CVE:CVE-2007-6750
+|       https://cve.mitre.org/cgi-bin/cvename.cgi?name=CVE-2007-6750
+ERABLE
+|     IDs:  CVE:CVE-2007-6750
+|       Slowloris tries to keep many connections to the target web server open and hold
+|       them open as long as possible.  It accomplishes this by opening connections to
+|       the target web server and sending a partial request. By doing so, it starves
+|       the http server's resources causing Denial Of Service.
+|       
+|     Disclosure date: 2009-09-17
+|     References:
+|       https://cve.mitre.org/cgi-bin/cvename.cgi?name=CVE-2007-6750
+|_      http://ha.ckers.org/slowloris/
+| http-csrf: 
+| Spidering limited to: maxdepth=3; maxpagecount=20; withinhost=192.168.229.132
+|   Found the following possible CSRF vulnerabilities: 
+|     
+|     Path: http://192.168.229.132:80/dvwa/
+|     Form id: 
+|     Form action: login.php
+|     
+|     Path: http://192.168.229.132:80/mutillidae/index.php?page=text-file-viewer.php
+|     Form id: id-bad-cred-tr
+|     Form action: index.php?page=text-file-viewer.php
+|     
+|     Path: http://192.168.229.132:80/mutillidae/index.php?page=view-someones-blog.php
+|     Form id: id-bad-blog-entry-tr
+|     Form action: index.php?page=view-someones-blog.php
+|     
+|     Path: http://192.168.229.132:80/mutillidae/index.php?page=login.php
+|     Form id: idloginform
+|     Form action: index.php?page=login.php
+|     
+|     Path: http://192.168.229.132:80/mutillidae/?page=source-viewer.php
+|     Form id: id-bad-cred-tr
+|_    Form action: index.php?page=source-viewer.php
+|_http-stored-xss: Couldn't find any stored XSS vulnerabilities.
+|_http-dombased-xss: Couldn't find any DOM based XSS.
+111/tcp  open  rpcbind
+139/tcp  open  netbios-ssn
+445/tcp  open  microsoft-ds
+512/tcp  open  exec
+513/tcp  open  login
+514/tcp  open  shell
+1099/tcp open  rmiregistry
+| rmi-vuln-classloader: 
+|   |   VULNERABLE:
+|     State: VULNERABLE (Exploitable)
+|     IDs:  CVE:CVE-2011-2523  BID:48539
+|       https://cve.mitre.org/cgi-bin/cvename.cgi?name=CVE-2011-2523
+|   VULNERABLE:
+|     State: VULNERABLE
+|     IDs:  CVE:CVE-2014-3566  BID:70574
+|       https://cve.mitre.org/cgi-bin/cvename.cgi?name=CVE-2014-3566
+|_  The SMTP server is not Exim: NOT VULNERABLE
+|   VULNERABLE:
+|     State: VULNERABLE
+|       eavesdropping, and are vulnerable to active man-in-the-middle attacks
+|     State: VULNERABLE
+|     IDs:  CVE:CVE-2015-4000  BID:74733
+|       https://cve.mitre.org/cgi-bin/cvename.cgi?name=CVE-2015-4000
+|     State: VULNERABLE
+|   VULNERABLE:
+|     State: LIKELY VULNERABLE
+|     IDs:  CVE:CVE-2007-6750
+|       https://cve.mitre.org/cgi-bin/cvename.cgi?name=CVE-2007-6750
+|   VULNERABLE:
+|     State: VULNERABLE
+|   VULNERABLE:
+|     State: VULNERABLE
+|   VULNERABLE:
+|     State: VULNERABLE
+|     IDs:  CVE:CVE-2014-3566  BID:70574
+|       https://cve.mitre.org/cgi-bin/cvename.cgi?name=CVE-2014-3566
+|   VULNERABLE:
+|     State: VULNERABLE
+|     Risk factor: High
+|       https://cve.mitre.org/cgi-bin/cvename.cgi?name=CVE-2014-0224
+|   VULNERABLE:
+|     State: LIKELY VULNERABLE
+|     IDs:  CVE:CVE-2007-6750
+|       https://cve.mitre.org/cgi-bin/cvename.cgi?name=CVE-2007-6750
+ERABLE:
+|   RMI registry default configuration remote code execution vulnerability
+|     State: |   VULNERABLE:
+|     State: VULNERABLE (Exploitable)
+|     IDs:  CVE:CVE-2011-2523  BID:48539
+|       https://cve.mitre.org/cgi-bin/cvename.cgi?name=CVE-2011-2523
+|   VULNERABLE:
+|     State: VULNERABLE
+|     IDs:  CVE:CVE-2014-3566  BID:70574
+|       https://cve.mitre.org/cgi-bin/cvename.cgi?name=CVE-2014-3566
+|_  The SMTP server is not Exim: NOT VULNERABLE
+|   VULNERABLE:
+|     State: VULNERABLE
+|       eavesdropping, and are vulnerable to active man-in-the-middle attacks
+|     State: VULNERABLE
+|     IDs:  CVE:CVE-2015-4000  BID:74733
+|       https://cve.mitre.org/cgi-bin/cvename.cgi?name=CVE-2015-4000
+|     State: VULNERABLE
+|   VULNERABLE:
+|     State: LIKELY VULNERABLE
+|     IDs:  CVE:CVE-2007-6750
+|       https://cve.mitre.org/cgi-bin/cvename.cgi?name=CVE-2007-6750
+|   VULNERABLE:
+|     State: VULNERABLE
+|   VULNERABLE:
+|     State: VULNERABLE
+|   VULNERABLE:
+|     State: VULNERABLE
+|     IDs:  CVE:CVE-2014-3566  BID:70574
+|       https://cve.mitre.org/cgi-bin/cvename.cgi?name=CVE-2014-3566
+|   VULNERABLE:
+|     State: VULNERABLE
+|     Risk factor: High
+|       https://cve.mitre.org/cgi-bin/cvename.cgi?name=CVE-2014-0224
+|   VULNERABLE:
+|     State: LIKELY VULNERABLE
+|     IDs:  CVE:CVE-2007-6750
+|       https://cve.mitre.org/cgi-bin/cvename.cgi?name=CVE-2007-6750
+ERABLE
+|       Default configuration of RMI registry allows loading classes from remote URLs which can lead to remote code execution.
+|       
+|     References:
+|_      https://github.com/rapid7/metasploit-framework/blob/master/modules/exploits/multi/misc/java_rmi_server.rb
+1524/tcp open  ingreslock
+2049/tcp open  nfs
+2121/tcp open  ccproxy-ftp
+3306/tcp open  mysql
+|_ssl-ccs-injection: No reply from server (TIMEOUT)
+5432/tcp open  postgresql
+| ssl-dh-params: 
+|   |   VULNERABLE:
+|     State: VULNERABLE (Exploitable)
+|     IDs:  CVE:CVE-2011-2523  BID:48539
+|       https://cve.mitre.org/cgi-bin/cvename.cgi?name=CVE-2011-2523
+|   VULNERABLE:
+|     State: VULNERABLE
+|     IDs:  CVE:CVE-2014-3566  BID:70574
+|       https://cve.mitre.org/cgi-bin/cvename.cgi?name=CVE-2014-3566
+|_  The SMTP server is not Exim: NOT VULNERABLE
+|   VULNERABLE:
+|     State: VULNERABLE
+|       eavesdropping, and are vulnerable to active man-in-the-middle attacks
+|     State: VULNERABLE
+|     IDs:  CVE:CVE-2015-4000  BID:74733
+|       https://cve.mitre.org/cgi-bin/cvename.cgi?name=CVE-2015-4000
+|     State: VULNERABLE
+|   VULNERABLE:
+|     State: LIKELY VULNERABLE
+|     IDs:  CVE:CVE-2007-6750
+|       https://cve.mitre.org/cgi-bin/cvename.cgi?name=CVE-2007-6750
+|   VULNERABLE:
+|     State: VULNERABLE
+|   VULNERABLE:
+|     State: VULNERABLE
+|   VULNERABLE:
+|     State: VULNERABLE
+|     IDs:  CVE:CVE-2014-3566  BID:70574
+|       https://cve.mitre.org/cgi-bin/cvename.cgi?name=CVE-2014-3566
+|   VULNERABLE:
+|     State: VULNERABLE
+|     Risk factor: High
+|       https://cve.mitre.org/cgi-bin/cvename.cgi?name=CVE-2014-0224
+|   VULNERABLE:
+|     State: LIKELY VULNERABLE
+|     IDs:  CVE:CVE-2007-6750
+|       https://cve.mitre.org/cgi-bin/cvename.cgi?name=CVE-2007-6750
+ERABLE:
+|   Diffie-Hellman Key Exchange Insufficient Group Strength
+|     State: |   VULNERABLE:
+|     State: VULNERABLE (Exploitable)
+|     IDs:  CVE:CVE-2011-2523  BID:48539
+|       https://cve.mitre.org/cgi-bin/cvename.cgi?name=CVE-2011-2523
+|   VULNERABLE:
+|     State: VULNERABLE
+|     IDs:  CVE:CVE-2014-3566  BID:70574
+|       https://cve.mitre.org/cgi-bin/cvename.cgi?name=CVE-2014-3566
+|_  The SMTP server is not Exim: NOT VULNERABLE
+|   VULNERABLE:
+|     State: VULNERABLE
+|       eavesdropping, and are vulnerable to active man-in-the-middle attacks
+|     State: VULNERABLE
+|     IDs:  CVE:CVE-2015-4000  BID:74733
+|       https://cve.mitre.org/cgi-bin/cvename.cgi?name=CVE-2015-4000
+|     State: VULNERABLE
+|   VULNERABLE:
+|     State: LIKELY VULNERABLE
+|     IDs:  CVE:CVE-2007-6750
+|       https://cve.mitre.org/cgi-bin/cvename.cgi?name=CVE-2007-6750
+|   VULNERABLE:
+|     State: VULNERABLE
+|   VULNERABLE:
+|     State: VULNERABLE
+|   VULNERABLE:
+|     State: VULNERABLE
+|     IDs:  CVE:CVE-2014-3566  BID:70574
+|       https://cve.mitre.org/cgi-bin/cvename.cgi?name=CVE-2014-3566
+|   VULNERABLE:
+|     State: VULNERABLE
+|     Risk factor: High
+|       https://cve.mitre.org/cgi-bin/cvename.cgi?name=CVE-2014-0224
+|   VULNERABLE:
+|     State: LIKELY VULNERABLE
+|     IDs:  CVE:CVE-2007-6750
+|       https://cve.mitre.org/cgi-bin/cvename.cgi?name=CVE-2007-6750
+ERABLE
+|       Transport Layer Security (TLS) services that use Diffie-Hellman groups
+|       of insufficient strength, especially those using one of a few commonly
+|       shared groups, may be susceptible to passive eavesdropping attacks.
+|     Check results:
+|       WEAK DH GROUP 1
+|             Cipher Suite: TLS_DHE_RSA_WITH_AES_256_CBC_SHA
+|             Modulus Type: Safe prime
+|             Modulus S
+...truncated...</pre></div>
+
+<div class="section" id="t4"><h2>TOOL 4: WHATWEB</h2>
+<div class="info"><strong>Purpose:</strong> Identify website technologies</div>
+<div class="info"><strong>Command:</strong> whatweb http://TARGET -v</div>
+<pre>WhatWeb report for [1m[34mhttp://192.168.229.132[0m
+Status    : 200 OK
+Title     : [1m[33mMetasploitable2 - Linux[0m
+IP        : 192.168.229.132
+Country   : [1m[31mRESERVED, ZZ[0m
+
+Summary   : [1mApache[0m[[1m[32m2.2.8[0m], [1mHTTPServer[0m[[1m[31mUbuntu Linux[0m][[1m[36mApache/2.2.8 (Ubuntu) DAV/2[0m], [1mPHP[0m[[1m[32m5.2.4-2ubuntu5.10[0m], [1mWebDAV[0m[[1m[32m2[0m], [1mX-Powered-By[0m[[0m[22mPHP/5.2.4-2ubuntu5.10[0m]
+
+Detected Plugins:
+[ [1mApache[0m ]
+	The Apache HTTP Server Project is an effort to develop and 
+	maintain an open-source HTTP server for modern operating 
+	systems including UNIX and Windows NT. The goal of this 
+	project is to provide a secure, efficient and extensible 
+	server that provides HTTP services in sync with the current 
+	HTTP standards. 
+
+	Version      : [1m[32m2.2.8[0m (from HTTP Server Header)
+	Google Dorks: (3)
+	Website     : http://httpd.apache.org/
+
+[ [1mHTTPServer[0m ]
+	HTTP server header string. This plugin also attempts to 
+	identify the operating system from the server header. 
+
+	OS           : [1m[31mUbuntu Linux[0m
+	String       : [1m[36mApache/2.2.8 (Ubuntu) DAV/2[0m (from server string)
+
+[ [1mPHP[0m ]
+	PHP is a widely-used general-purpose scripting language 
+	that is especially suited for Web development and can be 
+	embedded into HTML. This plugin identifies PHP errors, 
+	modules and versions and extracts the local file path and 
+	username if present. 
+
+	Version      : [1m[32m5.2.4-2ubuntu5.10[0m
+	Google Dorks: (3)
+	Website     : http://www.php.net/
+
+[ [1mWebDAV[0m ]
+	Web-based Distributed Authoring and Versioning (WebDAV) is 
+	a set of methods based on the Hypertext Transfer Protocol 
+	(HTTP) that facilitates collaboration between users in 
+	editing and managing documents and files stored on World 
+	Wide Web servers. - More Info: 
+	http://en.wikipedia.org/wiki/WebDAV 
+
+	Version      : [1m[32m2[0m
+
+[ [1mX-Powered-By[0m ]
+	X-Powered-By HTTP header 
+
+	String       : [1m[36mPHP/5.2.4-2ubuntu5.10[0m (from x-powered-by string)
+
+HTTP Headers:
+	HTTP/1.1 200 OK
+	Date: Tue, 19 May 2026 11:25:43 GMT
+	Server: Apache/2.2.8 (Ubuntu) DAV/2
+	X-Powered-By: PHP/5.2.4-2ubuntu5.10
+	Content-Length: 891
+	Connection: close
+	Content-Type: text/html
+	
+</pre></div>
+
+<div class="section" id="t5"><h2>TOOL 5: DIRB</h2>
+<div class="info"><strong>Purpose:</strong> Find hidden pages, admin panels</div>
+<div class="info"><strong>Command:</strong> dirb http://TARGET common.txt</div>
+<pre>
+-----------------
+DIRB v2.22    
+By The Dark Raver
+-----------------
+
+START_TIME: Tue May 19 16:25:41 2026
+URL_BASE: http://192.168.229.132/
+WORDLIST_FILES: /usr/share/wordlists/dirb/common.txt
+
+-----------------
+
+*** Generating Wordlist...
+                                                                               
+GENERATED WORDS: 4612
+
+---- Scanning URL: http://192.168.229.132/ ----
+*** Calculating NOT_FOUND code...
+                                                                               
+                                                                                                                                                                     
+--> Testing: http://192.168.229.132/.bash_history
+                                                                                                                                                                     
+--> Testing: http://192.168.229.132/.bashrc
+                                                                                                                                                                     
+--> Testing: http://192.168.229.132/.cache
+                                                                                                                                                                     
+--> Testing: http://192.168.229.132/.config
+                                                                                                                                                                     
+--> Testing: http://192.168.229.132/.cvs
+                                                                                                                                                                     
+--> Testing: http://192.168.229.132/.cvsignore
+                                                                                                                                                                     
+--> Testing: http://192.168.229.132/.forward
+                                                                                                                                                                     
+--> Testing: http://192.168.229.132/.git/HEAD
+                                                                                                                                                                     
+--> Testing: http://192.168.229.132/.history
+                                                                                                                                                                     
+--> Testing: http://192.168.229.132/.hta
+                                                                                                                                                                     
+--> Testing: http://192.168.229.132/.htaccess
+                                                                                                                                                                     
+--> Testing: http://192.168.229.132/.htpasswd
+                                                                                                                                                                     
+--> Testing: http://192.168.229.132/.listing
+                                                                                                                                                                     
+--> Testing: http://192.168.229.132/.listings
+                                                                                                                                                                     
+--> Testing: http://192.168.229.132/.mysql_history
+                                                                                                                                                                     
+--> Testing: http://192.168.229.132/.passwd
+                                                                                                                                                                     
+--> Testing: http://192.168.229.132/.perf
+                                                                                                                                                                     
+--> Testing: http://192.168.229.132/.profile
+                                                                                                                                                                     
+--> Testing: http://192.168.229.132/.rhosts
+                                                                                                                                                                     
+--> Testing: http://192.168.229.132/.sh_history
+                                                                                                                                                                     
+--> Testing: http://192.168.229.132/.ssh
+                                                                                                                                                                     
+--> Testing: http://192.168.229.132/.subversion
+                                                                                                                                                                     
+--> Testing: http://192.168.229.132/.svn
+                                                                                                                                                                     
+--> Testing: http://192.168.229.132/.svn/entries
+                                                                                                                                                                     
+--> Testing: http://192.168.229.132/.swf
+                                                                                                                                                                     
+--> Testing: http://192.168.229.132/.web
+                                                                                                                                                                     
+--> Testing: http://192.168.229.132/@
+                                                                                                                                                                     
+--> Testing: http://192.168.229.132/_
+                                                                                                                                                                     
+--> Testing: http://192.168.229.132/_adm
+                                                                                                                                                                     
+--> Testing: http://192.168.229.132/_admin
+                                                                                                                                                                     
+--> Testing: http://192.168.229.132/_ajax
+                                                                                                                                                                     
+--> Testing: http://192.168.229.132/_archive
+                                                                                                                                                                     
+--> Testing: http://192.168.229.132/_assets
+                                                                                                                                                                     
+--> Testing: http://192.168.229.132/_backup
+                                                                                                                                                                     
+--> Testing: http://192.168.229.132/_baks
+                                                                                                                                              
+...truncated...</pre></div>
+
+<div class="section" id="t6"><h2>TOOL 6: NIKTO</h2>
+<div class="info"><strong>Purpose:</strong> Web vulnerability scanner</div>
+<div class="info"><strong>Command:</strong> nikto -h http://TARGET</div>
+<pre>- Nikto v2.6.0
+---------------------------------------------------------------------------
++ Target IP:          192.168.229.132
++ Target Hostname:    192.168.229.132
++ Target Port:        80
++ Platform:           Unknown
++ Start Time:         2026-05-19 16:25:59 (GMT5)
+---------------------------------------------------------------------------
++ Server: Apache/2.2.8 (Ubuntu) DAV/2
++ ERROR: Failed to check for updates: 403
++ [999986] /: Retrieved x-powered-by header: PHP/5.2.4-2ubuntu5.10.
++ [750500] /icons/: Directory indexing found.
++ No CGI Directories found (use '-C all' to force check all possible dirs). CGI tests skipped.
++ [999100] /index: Uncommon header(s) 'tcn' found, with contents: list.
++ [999965] /index: Apache mod_negotiation is enabled with MultiViews, which allows attackers to easily brute force file names. The following alternatives for 'index' were found: index.php. See: http://www.wisec.it/sectou.php?id=4698ebdc59d15,https://exchange.xforce.ibmcloud.com/vulnerabilities/8275
++ [600050] Apache/2.2.8 appears to be outdated (current is at least 2.4.66).
++ [600625] PHP/5.2.4-2ubuntu5.10 appears to be outdated (current is at least 8.5.1).
++ [013587] /: Suggested security header missing: strict-transport-security. See: https://developer.mozilla.org/en-US/docs/Web/HTTP/Headers/Strict-Transport-Security
++ [013587] /: Suggested security header missing: referrer-policy. See: https://developer.mozilla.org/en-US/docs/Web/HTTP/Headers/Referrer-Policy
++ [013587] /: Suggested security header missing: x-content-type-options. See: https://developer.mozilla.org/en-US/docs/Web/HTTP/Headers/X-Content-Type-Options
++ [013587] /: Suggested security header missing: content-security-policy. See: https://developer.mozilla.org/en-US/docs/Web/HTTP/CSP
++ [013587] /: Suggested security header missing: permissions-policy. See: https://developer.mozilla.org/en-US/docs/Web/HTTP/Headers/Permissions-Policy
++ [999967] /: Web Server returns a valid response with junk HTTP methods which may cause false positives.
++ [000434] /: HTTP TRACE method is active and replies which suggests the host is vulnerable to XST. See: https://owasp.org/www-community/attacks/Cross_Site_Tracing
++ [750510] /phpinfo.php: Output from the phpinfo() function was found.
++ [750500] /doc/: Directory indexing found.
++ [001213] /doc/: The /doc/ directory is browsable. This may be /usr/doc. See: https://cve.mitre.org/cgi-bin/cvename.cgi?name=CVE-1999-0678
++ [001384] /?=PHPB8B5F2A0-3C92-11d3-A3A9-4C7B08C10000: PHP Easter Eggs reveals potentially sensitive information via HTTP requests that contain specific QUERY strings. See: https://labs.detectify.com/writeups/do-you-dare-to-show-your-php-easter-egg/
++ [001385] /?=PHPE9568F36-D428-11d2-A769-00AA001ACF42: PHP Easter Egg reveals potentially sensitive information via HTTP requests that contain specific QUERY strings. See: https://labs.detectify.com/writeups/do-you-dare-to-show-your-php-easter-egg/
++ [001386] /?=PHPE9568F34-D428-11d2-A769-00AA001ACF42: PHP Easter Egg reveals potentially sensitive information via HTTP requests that contain specific QUERY strings. See: https://labs.detectify.com/writeups/do-you-dare-to-show-your-php-easter-egg/
++ [001387] /?=PHPE9568F35-D428-11d2-A769-00AA001ACF42: PHP Easter Egg reveals potentially sensitive information via HTTP requests that contain specific QUERY strings. See: https://labs.detectify.com/writeups/do-you-dare-to-show-your-php-easter-egg/
++ [001795] /phpMyAdmin/changelog.php: phpMyAdmin is for managing MySQL databases, and should be protected or limited to authorized hosts.
++ [999984] /phpMyAdmin/ChangeLog: Server may leak inodes via ETags, header found with file /phpMyAdmin/ChangeLog, inode: 92462, size: 40540, mtime: Tue Dec  9 22:24:00 2008. See: https://cve.mitre.org/cgi-bin/cvename.cgi?name=CVE-2003-1418
++ [001796] /phpMyAdmin/ChangeLog: phpMyAdmin is for managing MySQL databases, and should be protected or limited to authorized hosts.
++ [750500] /test/: Directory indexing found.
++ [001894] /test/: This might be interesting.
++ [002989] /phpinfo.php: PHP is installed, and a test script which runs phpinfo() was found. This gives a lot of system information. See: CWE-552
++ [003584] /icons/README: Apache default file found. See: https://www.vntweb.co.uk/apache-restricting-access-to-iconsreadme/
++ [007107] /phpMyAdmin/README: phpMyAdmin is for managing MySQL databases, and should be protected or limited to authorized hosts. See: https://typo3.org/
++ [007342] /: X-Frame-Options header is deprecated and was replaced with the Content-Security-Policy HTTP header with the frame-ancestors directive. See: https://developer.mozilla.org/en-US/docs/Web/HTTP/Reference/Headers/X-Frame-Options
++ [007352] /: The X-Content-Type-Options header is not set. This could allow the user agent to render the content of the site in a different fashion to the MIME type. See: https://www.netsparker.com/web-vulnerability-scanner/vulnerabilities/missing-content-type-header/
++ 8242 requests: 16 errors and 30 items reported on the remote host
++ End Time:           2026-05-19 16:31:44 (GMT5) (345 seconds)
+---------------------------------------------------------------------------
++ 1 host(s) tested
+</pre></div>
+
+<div class="section" id="t7"><h2>TOOL 7: ENUM4LINUX</h2>
+<div class="info"><strong>Purpose:</strong> SMB enumeration</div>
+<div class="info"><strong>Command:</strong> enum4linux -a TARGET</div>
+<pre>Starting enum4linux v0.9.1 ( http://labs.portcullis.co.uk/application/enum4linux/ ) on Tue May 19 16:31:46 2026
+
+[34m =========================================( [0m[32mTarget Information[0m[34m )=========================================
+
+[0mTarget ........... 192.168.229.132
+RID Range ........ 500-550,1000-1050
+Username ......... ''
+Password ......... ''
+Known Usernames .. administrator, guest, krbtgt, domain admins, root, bin, none
+
+
+[34m ==========================( [0m[32mEnumerating Workgroup/Domain on 192.168.229.132[0m[34m )==========================
+
+[0m[33m
+[+] [0m[32mGot domain/workgroup name: WORKGROUP
+
+[0m
+[34m ==============================( [0m[32mNbtstat Information for 192.168.229.132[0m[34m )==============================
+
+[0mLooking up status of 192.168.229.132
+	METASPLOITABLE  <00> -         B <ACTIVE>  Workstation Service
+	METASPLOITABLE  <03> -         B <ACTIVE>  Messenger Service
+	METASPLOITABLE  <20> -         B <ACTIVE>  File Server Service
+	..__MSBROWSE__. <01> - <GROUP> B <ACTIVE>  Master Browser
+	WORKGROUP       <00> - <GROUP> B <ACTIVE>  Domain/Workgroup Name
+	WORKGROUP       <1d> -         B <ACTIVE>  Master Browser
+	WORKGROUP       <1e> - <GROUP> B <ACTIVE>  Browser Service Elections
+
+	MAC Address = 00-00-00-00-00-00
+
+[34m ==================================( [0m[32mSession Check on 192.168.229.132[0m[34m )==================================
+
+[0m[33m
+[+] [0m[32mServer 192.168.229.132 allows sessions using username '', password ''
+
+[0m
+[34m ===============================( [0m[32mGetting domain SID for 192.168.229.132[0m[34m )===============================
+
+[0mDomain Name: WORKGROUP
+Domain Sid: (NULL SID)
+[33m
+[+] [0m[32mCan't determine if host is part of domain or part of a workgroup
+
+[0m
+[34m =================================( [0m[32mOS information on 192.168.229.132[0m[34m )=================================
+
+[0m[33m
+[E] [0m[31mCan't get OS info with smbclient
+
+[0m[33m
+[+] [0m[32mGot OS info for 192.168.229.132 from srvinfo: 
+[0m	METASPLOITABLE Wk Sv PrQ Unx NT SNT metasploitable server (Samba 3.0.20-Debian)
+	platform_id     :	500
+	os version      :	4.9
+	server type     :	0x9a03
+
+
+[34m ======================================( [0m[32mUsers on 192.168.229.132[0m[34m )======================================
+
+[0mindex: 0x1 RID: 0x3f2 acb: 0x00000011 Account: games	Name: games	Desc: (null)
+index: 0x2 RID: 0x1f5 acb: 0x00000011 Account: nobody	Name: nobody	Desc: (null)
+index: 0x3 RID: 0x4ba acb: 0x00000011 Account: bind	Name: (null)	Desc: (null)
+index: 0x4 RID: 0x402 acb: 0x00000011 Account: proxy	Name: proxy	Desc: (null)
+index: 0x5 RID: 0x4b4 acb: 0x00000011 Account: syslog	Name: (null)	Desc: (null)
+index: 0x6 RID: 0xbba acb: 0x00000010 Account: user	Name: just a user,111,,	Desc: (null)
+index: 0x7 RID: 0x42a acb: 0x00000011 Account: www-data	Name: www-data	Desc: (null)
+index: 0x8 RID: 0x3e8 acb: 0x00000011 Account: root	Name: root	Desc: (null)
+index: 0x9 RID: 0x3fa acb: 0x00000011 Account: news	Name: news	Desc: (null)
+index: 0xa RID: 0x4c0 acb: 0x00000011 Account: postgres	Name: PostgreSQL administrator,,,	Desc: (null)
+index: 0xb RID: 0x3ec acb: 0x00000011 Account: bin	Name: bin	Desc: (null)
+index: 0xc RID: 0x3f8 acb: 0x00000011 Account: mail	Name: mail	Desc: (null)
+index: 0xd RID: 0x4c6 acb: 0x00000011 Account: distccd	Name: (null)	Desc: (null)
+index: 0xe RID: 0x4ca acb: 0x00000011 Account: proftpd	Name: (null)	Desc: (null)
+index: 0xf RID: 0x4b2 acb: 0x00000011 Account: dhcp	Name: (null)	Desc: (null)
+index: 0x10 RID: 0x3ea acb: 0x00000011 Account: daemon	Name: daemon	Desc: (null)
+index: 0x11 RID: 0x4b8 acb: 0x00000011 Account: sshd	Name: (null)	Desc: (null)
+index: 0x12 RID: 0x3f4 acb: 0x00000011 Account: man	Name: man	Desc: (null)
+index: 0x13 RID: 0x3f6 acb: 0x00000011 Account: lp	Name: lp	Desc: (null)
+index: 0x14 RID: 0x4c2 acb: 0x00000011 Account: mysql	Name: MySQL Server,,,	Desc: (null)
+index: 0x15 RID: 0x43a acb: 0x00000011 Account: gnats	Name: Gnats Bug-Reporting System (admin)	Desc: (null)
+index: 0x16 RID: 0x4b0 acb: 0x00000011 Account: libuuid	Name: (null)	Desc: (null)
+index: 0x17 RID: 0x42c acb: 0x00000011 Account: backup	Name: backup	Desc: (null)
+index: 0x18 RID: 0xbb8 acb: 0x00000010 Account: msfadmin	Name: msfadmin,,,	Desc: (null)
+index: 0x19 RID: 0x4c8 acb: 0x00000011 Account: telnetd	Name: (null)	Desc: (null)
+index: 0x1a RID: 0x3ee acb: 0x00000011 Account: sys	Name: sys	Desc: (null)
+index: 0x1b RID: 0x4b6 acb: 0x00000011 Account: klog	Name: (null)	Desc: (null)
+index: 0x1c RID: 0x4bc acb: 0x00000011 Account: postfix	Name: (null)	Desc: (null)
+index: 0x1d RID: 0xbbc acb: 0x00000011 Account: service	Name: ,,,	Desc: (null)
+index: 0x1e RID: 0x434 acb: 0x00000011 Account: list	Name: Mailing List Manager	Desc: (null)
+index: 0x1f RID: 0x436 acb: 0x00000011 Account: irc	Name: ircd	Desc: (null)
+index: 0x20 RID: 0x4be acb: 0x00000011 Account: ftp	Name: (null)	Desc: (null)
+index: 0x21 RID: 0x4c4 acb: 0x00000011 Account: tomcat55	Name: (null)	Desc: (null)
+index: 0x22 RID: 0x3f0 acb: 0x00000011 Account: sync	Name: sync	Desc: (null)
+index: 0x23 RID: 0x3fc acb: 0x00000011 Account: uucp	Name: uucp	Desc: (null)
+
+user:[games] rid:[0x3f2]
+user:[nobody] rid:[0x1f5]
+user:[bind] rid:[0x4ba]
+user:[proxy] rid:[0x402]
+user:[syslog] rid:[0x4b4]
+user:[user] rid:[0xbba]
+user:[www-data] rid:[0x42a]
+user:[root] rid:[0x3e8]
+user:[news] rid:[0x3fa]
+user:[postgres] rid:[0x4c0]
+user:[bin] rid:[0x3ec]
+user:[mail] rid:[0x3f8]
+user:[distccd] rid:[0x4c6]
+user:[proftpd] rid:[0x4ca]
+user:[dhcp] rid:[0x4b2]
+user:[daemon] rid:[0x3ea]
+user:[sshd] rid:[0x4b8]
+user:[man] rid:[0x3f4]
+user:[lp] rid:[0x3f6]
+user:[mysql] rid:[0x4c2]
+user:[gnats] rid:[0x43a]
+user:[libuuid] rid:[0x4b0]
+user:[backup] rid:[0x42c]
+user:[msfadmin] rid:[0xbb8]
+user:[telnetd] rid:[0x4c8]
+user:[sys] rid:[0x3ee]
+user:[klog] rid:[0x4b6]
+user:[postfix] rid:[0x4bc]
+user:[service] rid:[0xbbc]
+user:[list] rid:[0x434]
+user:[irc] rid:[0x436]
+user:[ftp] rid:[0x4be]
+user:[tomcat55] rid:[0x4c4]
+user:[sync] rid:[0x3f0]
+user:[uucp] rid:[0x3fc]
+
+[34m ================================( [0m[32mShare Enumeration on 192.168.229.132[0m[34m )================================
+
+[0m
+	Sharename       Type      Comment
+	---------       ----      -------
+	print$          Disk      Printer Drivers
+	tmp             Disk      oh noes!
+	opt             Disk      
+	IPC$            IPC       IPC Service (metasploitable server (Samba 3.0.20-Debian))
+	ADMIN$          IPC       IPC Service (metasploitable server (Samba 3.0.20-Debian))
+Reconnecting with SMB1 for workgroup listing.
+
+	Server               Comment
+	---------            -------
+
+	Workgroup            Master
+	---------            -------
+	WORKGROUP            METASPLOITABLE
+[33m
+[+] [0m[32mAttempting to map shares on 192.168.229.132
+
+[0m//192.168.229.132/print$	[35mMapping: [0mDENIED[35m Listing: [0mN/A[35m Writing: [0mN/A
+//192.168.229.132/tmp	[35mMapping: [0mOK[35m Listing: [0mOK[35m Writing: [0mN/A
+//192.168.229.132/opt	[35mMapping: [0mDENIED[35m Listing: [0mN/A[35m Writing: [0mN/A
+[33m
+[E] [0m[31mCan't understand response:
+
+[0mNT_STATUS_NETWORK_ACCESS_DENIED listing \*
+//192.168.229.132/IPC$	[35mMapping: [0mN/A[35m Listing: [0mN/A[35m Writing: [0mN/A
+//192.168.229.132/ADMIN$	[35mMapping: [0mDENIED[35m Listing: [0mN/A[35m Writing: [0mN/A
+
+[34m ==========================( [0m[32mPassword Policy Information for 192.168.229.132[0m[34m )==========================
+
+[0m
+
+[+] Attaching to 192.168.229.132 using a NULL share
+
+[+] Trying protocol 139/SMB...
+
+[+] Found domain(s):
+
+	[+] METASPLOITABLE
+	[+] Builtin
+
+[+] Password Info for Domain: METASPLOITABLE
+
+	[+] Minimum password length: 5
+	[+] Password history length: None
+	[+] Maximum password age: Not Set
+	[+] Password Complexity Flags: 000000
+
+		[+] Domain Refuse Password Change: 0
+		[+] Domain Password Store Cleartext: 0
+		[+] Domain Password Lockout Admins: 0
+		[+] Domain Password No Clear Change: 0
+		[+]
+...truncated...</pre></div>
+
+<div class="section" id="t8"><h2>TOOL 8: WPSCAN</h2>
+<div class="info"><strong>Purpose:</strong> WordPress vulnerability scan</div>
+<div class="info"><strong>Command:</strong> wpscan --url http://TARGET</div>
+<pre>_______________________________________________________________
+         __          _______   _____
+         \ \        / /  __ \ / ____|
+          \ \  /\  / /| |__) | (___   ___  __ _ _ __ ®
+           \ \/  \/ / |  ___/ \___ \ / __|/ _` | '_ \
+            \  /\  /  | |     ____) | (__| (_| | | | |
+             \/  \/   |_|    |_____/ \___|\__,_|_| |_|
+
+         WordPress Security Scanner by the WPScan Team
+                         Version 3.8.28
+                               
+       @_WPScan_, @ethicalhack3r, @erwan_lr, @firefart
+_______________________________________________________________
+
+
+Scan Aborted: Update required, you can not run a scan if a database file is missing.
+</pre></div>
+
+<div class="section" id="t9"><h2>TOOL 9: SQLMAP</h2>
+<div class="info"><strong>Purpose:</strong> SQL injection detection</div>
+<div class="info"><strong>Command:</strong> sqlmap -u URL --batch</div>
+<pre>        ___
+       __H__
+ ___ ___[.]_____ ___ ___  {1.10.4#stable}
+|_ -| . [,]     | .'| . |
+|___|_  [,]_|_|_|__,|  _|
+      |_|V...       |_|   https://sqlmap.org
+
+[!] legal disclaimer: Usage of sqlmap for attacking targets without prior mutual consent is illegal. It is the end user's responsibility to obey all applicable local, state and federal laws. Developers assume no liability and are not responsible for any misuse or damage caused by this program
+
+[*] starting @ 16:32:09 /2026-05-19/
+
+[16:32:09] [INFO] testing connection to the target URL
+[16:32:09] [CRITICAL] page not found (404)
+it is not recommended to continue in this kind of cases. Do you want to quit and make sure that everything is set up properly? [Y/n] Y
+[16:32:09] [WARNING] HTTP error codes detected during run:
+404 (Not Found) - 1 times
+
+[*] ending @ 16:32:09 /2026-05-19/
+
+</pre></div>
+
+<div class="section" id="t10"><h2>TOOL 10: HYDRA</h2>
+<div class="info"><strong>Purpose:</strong> Crack SSH passwords</div>
+<div class="info"><strong>Command:</strong> hydra -L users.txt -P rockyou.txt ssh://TARGET</div>
+<pre>Hydra v9.6 (c) 2023 by van Hauser/THC & David Maciejak - Please do not use in military or secret service organizations, or for illegal purposes (this is non-binding, these *** ignore laws and ethics anyway).
+
+Hydra (https://github.com/vanhauser-thc/thc-hydra) starting at 2026-05-19 16:32:11
+[WARNING] Many SSH configurations limit the number of parallel tasks, it is recommended to reduce the tasks: use -t 4
+[DATA] max 16 tasks per 1 server, overall 16 tasks, 86066394 login tries (l:6/p:14344399), ~5379150 tries per task
+[DATA] attacking ssh://192.168.229.132:22/
+[ERROR] could not connect to ssh://192.168.229.132:22 - kex error : no match for method mac algo client->server: server [hmac-md5,hmac-sha1,umac-64@openssh.com,hmac-ripemd160,hmac-ripemd160@openssh.com,hmac-sha1-96,hmac-md5-96], client [hmac-sha2-256-etm@openssh.com,hmac-sha2-512-etm@openssh.com,hmac-sha2-256,hmac-sha2-512]
+</pre></div>
+
+<div class="section" id="t11"><h2>TOOL 11: METASPLOIT</h2>
+<div class="info"><strong>Purpose:</strong> Auto exploitation</div>
+<div class="info"><strong>Command:</strong> msfconsole -r exploit.rc</div>
+<pre>[1m[34m[*][0m Processing /root/DarkSpectre/reports/11_exploit.rc for ERB directives.
+resource (/root/DarkSpectre/reports/11_exploit.rc)> use exploit/unix/ftp/vsftpd_234_backdoor
+[0m[1m[34m[*][0m Using configured payload cmd/linux/http/x86/meterpreter_reverse_tcp
+resource (/root/DarkSpectre/reports/11_exploit.rc)> set RHOSTS 192.168.229.132
+[0mRHOSTS => 192.168.229.132
+resource (/root/DarkSpectre/reports/11_exploit.rc)> set RPORT 21
+[0mRPORT => 21
+resource (/root/DarkSpectre/reports/11_exploit.rc)> check
+[0m[1m[34m[*][0m 192.168.229.132:21 - FTP banner hints its vulnerable: 220 (vsFTPd 2.3.4)
+[1m[34m[*][0m 192.168.229.132:21 - The target appears to be vulnerable.
+resource (/root/DarkSpectre/reports/11_exploit.rc)> exit
+[0m</pre></div>
+
+<div class="section" id="vuln"><h2>ALL |   VULNERABLE:
+|     State: VULNERABLE (Exploitable)
+|     IDs:  CVE:CVE-2011-2523  BID:48539
+|       https://cve.mitre.org/cgi-bin/cvename.cgi?name=CVE-2011-2523
+|   VULNERABLE:
+|     State: VULNERABLE
+|     IDs:  CVE:CVE-2014-3566  BID:70574
+|       https://cve.mitre.org/cgi-bin/cvename.cgi?name=CVE-2014-3566
+|_  The SMTP server is not Exim: NOT VULNERABLE
+|   VULNERABLE:
+|     State: VULNERABLE
+|       eavesdropping, and are vulnerable to active man-in-the-middle attacks
+|     State: VULNERABLE
+|     IDs:  CVE:CVE-2015-4000  BID:74733
+|       https://cve.mitre.org/cgi-bin/cvename.cgi?name=CVE-2015-4000
+|     State: VULNERABLE
+|   VULNERABLE:
+|     State: LIKELY VULNERABLE
+|     IDs:  CVE:CVE-2007-6750
+|       https://cve.mitre.org/cgi-bin/cvename.cgi?name=CVE-2007-6750
+|   VULNERABLE:
+|     State: VULNERABLE
+|   VULNERABLE:
+|     State: VULNERABLE
+|   VULNERABLE:
+|     State: VULNERABLE
+|     IDs:  CVE:CVE-2014-3566  BID:70574
+|       https://cve.mitre.org/cgi-bin/cvename.cgi?name=CVE-2014-3566
+|   VULNERABLE:
+|     State: VULNERABLE
+|     Risk factor: High
+|       https://cve.mitre.org/cgi-bin/cvename.cgi?name=CVE-2014-0224
+|   VULNERABLE:
+|     State: LIKELY VULNERABLE
+|     IDs:  CVE:CVE-2007-6750
+|       https://cve.mitre.org/cgi-bin/cvename.cgi?name=CVE-2007-6750
+ERABILITIES</h2>
+<pre>|   VULNERABLE:
+|     State: VULNERABLE (Exploitable)
+|     IDs:  CVE:CVE-2011-2523  BID:48539
+|       https://cve.mitre.org/cgi-bin/cvename.cgi?name=CVE-2011-2523
+|   VULNERABLE:
+|     State: VULNERABLE
+|     IDs:  CVE:CVE-2014-3566  BID:70574
+|       https://cve.mitre.org/cgi-bin/cvename.cgi?name=CVE-2014-3566
+|_  The SMTP server is not Exim: NOT VULNERABLE
+|   VULNERABLE:
+|     State: VULNERABLE
+|       eavesdropping, and are vulnerable to active man-in-the-middle attacks
+|     State: VULNERABLE
+|     IDs:  CVE:CVE-2015-4000  BID:74733
+|       https://cve.mitre.org/cgi-bin/cvename.cgi?name=CVE-2015-4000
+|     State: VULNERABLE
+|   VULNERABLE:
+|     State: LIKELY VULNERABLE
+|     IDs:  CVE:CVE-2007-6750
+|       https://cve.mitre.org/cgi-bin/cvename.cgi?name=CVE-2007-6750
+|   VULNERABLE:
+|     State: VULNERABLE
+|   VULNERABLE:
+|     State: VULNERABLE
+|   VULNERABLE:
+|     State: VULNERABLE
+|     IDs:  CVE:CVE-2014-3566  BID:70574
+|       https://cve.mitre.org/cgi-bin/cvename.cgi?name=CVE-2014-3566
+|   VULNERABLE:
+|     State: VULNERABLE
+|     Risk factor: High
+|       https://cve.mitre.org/cgi-bin/cvename.cgi?name=CVE-2014-0224
+|   VULNERABLE:
+|     State: LIKELY VULNERABLE
+|     IDs:  CVE:CVE-2007-6750
+|       https://cve.mitre.org/cgi-bin/cvename.cgi?name=CVE-2007-6750
+</pre></div>
+
+<div class="section" id="sum"><h2>FINAL SUMMARY</h2>
+<table><tr><th>Tool</th><th>Status</th></tr>
+<tr><td>Netdiscover</td><td style="color:#00ff88;font-weight:bold">Complete</td></tr>
+<tr><td>Nmap</td><td style="color:#00ff88;font-weight:bold">Complete</td></tr>
+<tr><td>Nmap Vuln</td><td style="color:#00ff88;font-weight:bold">Complete</td></tr>
+<tr><td>WhatWeb</td><td style="color:#00ff88;font-weight:bold">Complete</td></tr>
+<tr><td>Dirb</td><td style="color:#00ff88;font-weight:bold">Complete</td></tr>
+<tr><td>Nikto</td><td style="color:#00ff88;font-weight:bold">Complete</td></tr>
+<tr><td>Enum4Linux</td><td style="color:#00ff88;font-weight:bold">Complete</td></tr>
+<tr><td>WPScan</td><td style="color:#00ff88;font-weight:bold">Complete</td></tr>
+<tr><td>SQLMap</td><td style="color:#00ff88;font-weight:bold">Complete</td></tr>
+<tr><td>Hydra</td><td style="color:#00ff88;font-weight:bold">Complete</td></tr>
+<tr><td>Metasploit</td><td style="color:#00ff88;font-weight:bold">Complete</td></tr>
+</table>
+<p style="margin-top:15px;color:#c0a0e0"><strong>Author:</strong> <span style="color:#d8b4fe">Zakia Rani</span></p>
+</div>
+
+<div class="footer">
+<p style="font-size:1.3em;color:#c084fc;font-weight:bold">DARKSPECTRE</p>
+<p class="author">Author: Zakia Rani</p>
+<p>GitHub: github.com/zakiarani75/DarkSpectre</p>
+<p style="color:#555;margin-top:8px">I have permission and am authorized</p>
+</div>
+</body>
+</html>
