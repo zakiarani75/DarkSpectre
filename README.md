@@ -34,6 +34,16 @@
 | 12 | **HTML Report** | Professional purple-themed report |
 
 ---
+## Project Screenshots
+
+### 1. Web Report Dashboard
+![DarkSpectre Dashboard](44529.jpg)
+
+### 2. Execution Complete & Server Setup
+![DarkSpectre Execution Complete](44530.jpg)
+
+### 3. Scanning Process (Terminal)
+![DarkSpectre Scanning Process](44531.jpg)
 
 ## 🛠️ Tools Used
 
@@ -79,12 +89,7 @@ sudo apt install -y nmap netdiscover hydra dirb nikto whatweb \
 
 # Install Python libraries
 pip3 install colorama requests
-## Project Screenshots
-### 1. Web Report Dashboard
-![DarkSpectre Dashboard](44529.jpg)
 
-### 2. Execution Complete & Server Setup
-![DarkSpectre Execution Complete](44530.jpg)
 
 ### 3. Scanning Process (Terminal)
 ![DarkSpectre Scanning Process](44531.jpg)
